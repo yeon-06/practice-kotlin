@@ -15,8 +15,12 @@ class Cars(names: List<String>) {
 
     private fun validateNames(names: List<String>) {
         val nameSet = setOf(names)
-        if(nameSet.size != names.size) {
+        if (nameSet.size != names.size) {
             throw IllegalArgumentException("자동차 이름 목록에 중복이 존재합니다.")
         }
+    }
+
+    fun moveAll() {
+        value.forEach { it.move() }
     }
 }
