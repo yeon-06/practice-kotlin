@@ -13,6 +13,7 @@ object OutputView {
         cars.value.forEach {
             println(String.format("%s : %s", it.name, drawStatusBar(it.location)))
         }
+        println()
     }
 
     private fun drawStatusBar(value: Int): String {
