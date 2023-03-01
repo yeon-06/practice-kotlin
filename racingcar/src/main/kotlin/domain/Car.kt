@@ -1,11 +1,10 @@
 package domain
 
-import util.RandomUtil
-
 class Car(
-        val name: String,
-        var location: Int = 0
+        val name: String, location: Int = 0
 ) {
+    var location = location
+        private set
 
     init {
         require(name.isNotBlank()) { "자동차 이름은 공백이 될 수 없습니다." }
@@ -13,9 +12,6 @@ class Car(
     }
 
     fun move() {
-        val randomValue = RandomUtil.generateRandom()
-        if (randomValue >= 4) {
-            location++
-        }
+        location++
     }
 }
