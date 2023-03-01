@@ -14,6 +14,6 @@ object InputValidator {
     }
 
     private fun isNumber(input: String): Boolean {
-        return input.toIntOrNull() != null
+        return input.toIntOrNull() == null
     }
 }
