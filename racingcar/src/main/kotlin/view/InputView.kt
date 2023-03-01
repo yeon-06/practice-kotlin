@@ -1,6 +1,6 @@
 package view
 
-import exception.InputException
+import view.validator.InputValidator
 
 object InputView {
 
@@ -10,11 +10,9 @@ object InputView {
     }
 
     fun inputTryCount(): Int {
-        try {
-            println("시도할 회수는 몇회인가요?")
-            return readln().toInt()
-        } catch (e: NumberFormatException) {
-            throw InputException("시도 횟수는 숫자 형태로 입력해야합니다.")
-        }
+        println("시도할 회수는 몇회인가요?")
+        val input = readln()
+        InputValidator.validTryCount(input)
+        return input.toInt()
     }
 }
