@@ -1,6 +1,7 @@
 package view
 
 import domain.Cars
+import java.lang.Exception
 
 object OutputView {
 
@@ -22,5 +23,9 @@ object OutputView {
         println(
                 String.format("%s가 최종 우승했습니다.", names.joinToString(separator = ", "))
         )
+    }
+
+    fun printException(exception: Exception) {
+        println(exception.message)
     }
 }
