@@ -8,10 +8,14 @@ class Car(
 
     init {
         require(name.isNotBlank()) { "자동차 이름은 공백이 될 수 없습니다." }
-        require(name.length <= 5) { "자동차 이름의 길이는 5자 이하여야 합니다." }
+        require(name.length <= NAME_MIN_LENGTH) { "자동차 이름의 길이는 5자 이하여야 합니다." }
     }
 
     fun move() {
         location++
+    }
+
+    companion object {
+        private const val NAME_MIN_LENGTH = 5
     }
 }
