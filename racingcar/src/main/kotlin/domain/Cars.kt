@@ -1,7 +1,5 @@
 package domain
 
-import util.RandomUtil
-
 class Cars(names: List<String>) {
 
     val value: List<Car>
@@ -18,13 +16,8 @@ class Cars(names: List<String>) {
         }
     }
 
-    fun moveAll() {
-        value.forEach {
-            val randomValue = RandomUtil.generateRandom()
-            if (randomValue >= 4) {
-                it.move()
-            }
-        }
+    fun moveAll(strategy: MoveStrategy) {
+        value.forEach { strategy.move(it) }
     }
 
     fun findMaxLocationCars(): List<Car> {

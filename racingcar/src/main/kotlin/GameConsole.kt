@@ -1,11 +1,13 @@
 import domain.Cars
+import domain.MoveStrategy
 import view.InputView
 import view.OutputView
 
 fun main() {
     val cars = createCars()
     val tryCount = inputTryCount()
-    moving(cars, tryCount)
+    val strategy = MoveStrategy()
+    moving(cars, tryCount, strategy)
     showResult(cars)
 }
 
@@ -28,10 +30,10 @@ fun inputTryCount(): Int {
     }
 }
 
-fun moving(cars: Cars, tryCount: Int) {
+fun moving(cars: Cars, tryCount: Int, strategy: MoveStrategy) {
     OutputView.printStartSentence()
     for (i in 1..tryCount) {
-        cars.moveAll()
+        cars.moveAll(strategy)
         OutputView.printStatus(cars)
     }
 }
