@@ -5,14 +5,8 @@ class Cars(names: List<String>) {
     val value: List<Car>
 
     init {
-        validateNames(names)
+        require(names.distinct().size == names.size) { "자동차 이름 목록에 중복이 존재합니다." }
         value = names.map { Car(it) }
-    }
-
-    private fun validateNames(names: List<String>) {
-        if (names.distinct().size != names.size) {
-            throw IllegalArgumentException("자동차 이름 목록에 중복이 존재합니다.")
-        }
     }
 
     fun moveAll(strategy: MoveStrategy) {
