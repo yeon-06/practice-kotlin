@@ -11,7 +11,7 @@ fun main() {
     showResult(cars)
 }
 
-fun createCars(): Cars {
+private fun createCars(): Cars {
     return try {
         val carNames = InputView.inputCarNames()
         Cars(carNames)
@@ -21,7 +21,7 @@ fun createCars(): Cars {
     }
 }
 
-fun inputTryCount(): Int {
+private fun inputTryCount(): Int {
     return try {
         InputView.inputTryCount()
     } catch (e: Exception) {
@@ -30,7 +30,7 @@ fun inputTryCount(): Int {
     }
 }
 
-fun moving(cars: Cars, tryCount: Int, strategy: MoveStrategy) {
+private fun moving(cars: Cars, tryCount: Int, strategy: MoveStrategy) {
     OutputView.printStartSentence()
     for (i in 1..tryCount) {
         cars.moveAll(strategy)
@@ -38,7 +38,7 @@ fun moving(cars: Cars, tryCount: Int, strategy: MoveStrategy) {
     }
 }
 
-fun showResult(cars: Cars) {
+private fun showResult(cars: Cars) {
     val winnerNames = cars.findMaxLocationCars()
             .map { it.name }
     OutputView.printResult(winnerNames)
