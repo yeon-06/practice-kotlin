@@ -1,7 +1,6 @@
 package view
 
 import domain.Cars
-import java.lang.Exception
 
 object OutputView {
 
@@ -11,7 +10,7 @@ object OutputView {
 
     fun printStatus(cars: Cars) {
         cars.value.forEach {
-            println(String.format("%s : %s", it.name, drawStatusBar(it.location)))
+            println("${it.name} : ${drawStatusBar(it.location)}")
         }
         println()
     }
@@ -21,9 +20,7 @@ object OutputView {
     }
 
     fun printResult(names: List<String>) {
-        println(
-                String.format("%s가 최종 우승했습니다.", names.joinToString(separator = ", "))
-        )
+        println("${names.joinToString(separator = ", ")}가 최종 우승했습니다.")
     }
 
     fun printException(exception: Exception) {
