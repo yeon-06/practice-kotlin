@@ -5,7 +5,7 @@ import exception.InputException
 object InputValidator {
 
     fun validTryCount(input: String) {
-        if (isNumber(input)) {
+        if (isNotNumber(input)) {
             throw InputException("시도 횟수는 숫자 형태로 입력해야합니다.")
         }
         if (input.toInt() < 0) {
@@ -13,7 +13,6 @@ object InputValidator {
         }
     }
 
-    private fun isNumber(input: String): Boolean {
-        return input.toIntOrNull() == null
-    }
+    private fun isNotNumber(input: String): Boolean =
+            input.toIntOrNull() == null
 }
