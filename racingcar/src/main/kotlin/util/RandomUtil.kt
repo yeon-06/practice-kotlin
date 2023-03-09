@@ -1,12 +1,10 @@
 package util
 
-import java.util.Random
+import java.util.*
 
 object RandomUtil {
 
     private val random = Random()
 
-    fun generateRandom():Int{
-        return random.nextInt(10)
-    }
+    fun generateRandom(): Int = random.nextInt(10)
 }

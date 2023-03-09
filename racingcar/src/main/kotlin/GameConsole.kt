@@ -11,23 +11,19 @@ fun main() {
     showResult(cars)
 }
 
-private fun createCars(): Cars {
-    return try {
-        val carNames = InputView.inputCarNames()
-        Cars(carNames)
-    } catch (e: Exception) {
-        OutputView.printException(e)
-        createCars()
-    }
+private fun createCars(): Cars = try {
+    val carNames = InputView.inputCarNames()
+    Cars(carNames)
+} catch (e: Exception) {
+    OutputView.printException(e)
+    createCars()
 }
 
-private fun inputTryCount(): Int {
-    return try {
-        InputView.inputTryCount()
-    } catch (e: Exception) {
-        OutputView.printException(e)
-        inputTryCount()
-    }
+private fun inputTryCount(): Int = try {
+    InputView.inputTryCount()
+} catch (e: Exception) {
+    OutputView.printException(e)
+    inputTryCount()
 }
 
 private fun moving(cars: Cars, tryCount: Int, strategy: MoveStrategy) {

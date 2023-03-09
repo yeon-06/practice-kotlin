@@ -25,7 +25,6 @@ class Cars(names: List<String>) {
         return value.filter { it.location == maxLocation }
     }
 
-    private fun findMaxLocation(): Int {
-        return value.maxOf { it.location }
-    }
+    private fun findMaxLocation(): Int =
+            value.maxOf { it.location }
 }

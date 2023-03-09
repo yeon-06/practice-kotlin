@@ -4,7 +4,7 @@ import util.RandomUtil
 
 class MoveStrategy {
 
-    fun move(car:Car) {
+    fun move(car: Car) {
         val randomValue = RandomUtil.generateRandom()
         if (randomValue >= STANDARD_VALUE) {
             car.move()
