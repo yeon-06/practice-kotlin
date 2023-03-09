@@ -10,8 +10,7 @@ class Cars(names: List<String>) {
     }
 
     private fun validateNames(names: List<String>) {
-        val nameSet = names.toSet()
-        if (nameSet.size != names.size) {
+        if (names.distinct().size != names.size) {
             throw IllegalArgumentException("자동차 이름 목록에 중복이 존재합니다.")
         }
     }
