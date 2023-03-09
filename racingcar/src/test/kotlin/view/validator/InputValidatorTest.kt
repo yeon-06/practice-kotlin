@@ -1,11 +1,11 @@
 package view.validator
 
 import exception.InputException
+import io.kotest.assertions.throwables.shouldNotThrowAny
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.inspectors.forAll
 import io.kotest.matchers.shouldBe
-import org.junit.jupiter.api.assertDoesNotThrow
-import org.junit.jupiter.api.assertThrows
 
 class InputValidatorTest : ShouldSpec({
 
@@ -15,7 +15,7 @@ class InputValidatorTest : ShouldSpec({
 
             should("예외가 발생한다.") {
                 inputs.forAll {
-                    val exception = assertThrows<InputException> { InputValidator.validTryCount(it) }
+                    val exception = shouldThrow<InputException> { InputValidator.validTryCount(it) }
                     exception.message.shouldBe("시도 횟수는 숫자 형태로 입력해야합니다.")
                 }
             }
@@ -25,7 +25,7 @@ class InputValidatorTest : ShouldSpec({
             val input = "-1"
 
             should("예외가 발생한다.") {
-                val exception = assertThrows<InputException> { InputValidator.validTryCount(input) }
+                val exception = shouldThrow<InputException> { InputValidator.validTryCount(input) }
                 exception.message.shouldBe("시도 횟수는 0이상이어야 합니다.")
             }
         }
@@ -35,7 +35,7 @@ class InputValidatorTest : ShouldSpec({
 
             should("예외가 발생하지 않는다.") {
                 inputs.forAll {
-                    assertDoesNotThrow { InputValidator.validTryCount(it) }
+                    shouldNotThrowAny { InputValidator.validTryCount(it) }
                 }
             }
         }
