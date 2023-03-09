@@ -4,7 +4,7 @@ import domain.Cars
 
 object OutputView {
 
-    fun printStartSentence() {
+    fun printResultTitle() {
         println("실행 결과")
     }
 

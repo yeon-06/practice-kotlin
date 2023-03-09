@@ -27,7 +27,7 @@ private fun inputTryCount(): Int = try {
 }
 
 private fun moving(cars: Cars, tryCount: Int, strategy: MoveStrategy) {
-    OutputView.printStartSentence()
+    OutputView.printResultTitle()
     for (i in 1..tryCount) {
         cars.moveAll(strategy)
         OutputView.printStatus(cars)
