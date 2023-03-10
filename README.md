@@ -8,3 +8,5 @@
 - [racingcar](./racingcar)
     - 원본 레포: https://github.com/woowacourse/kotlin-racingcar
     - 자동차 경주 게임 코틀린으로 만들어보기
+- [ladder](./ladder)
+    - 사다리 타기 게임 코틀린으로 만들어보기
