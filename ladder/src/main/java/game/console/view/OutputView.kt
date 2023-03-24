@@ -17,6 +17,10 @@ object OutputView {
         printListWithFormat(ladder.itemNames)
     }
 
+    fun printResult(item: String) {
+        println(item)
+    }
+
     private fun printListWithFormat(list: List<String>) {
         for (l in list) {
             print("%-${TAB_SIZE}s".format(l))
@@ -29,9 +33,9 @@ object OutputView {
             print("|")
             for (v in value) {
                 if (v) {
-                    print(" ".repeat(TAB_SIZE - 1))
-                } else {
                     print("-".repeat(TAB_SIZE - 1))
+                } else {
+                    print(" ".repeat(TAB_SIZE - 1))
                 }
                 print("|")
             }
