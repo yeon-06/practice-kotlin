@@ -8,9 +8,13 @@ class Ladder(
         height: Int
 ) {
 
+    val participantNames: List<String>
+    val itemNames: List<String>
     val value: List<List<Boolean>>
 
     init {
+        this.participantNames = participantNames
+        this.itemNames = itemNames
         this.value = generateLadder(participantNames.size - 1, height)
     }
 
