@@ -18,9 +18,29 @@ class Ladder(
         this.value = generateLadder(participantNames.size - 1, height)
     }
 
+    fun findItemByParticipant(participant: String): String {
+        require(participantNames.contains(participant)) { "참가자의 이름을 올바르게 입력해주세요." }
+        val startPoint = participantNames.indexOf(participant)
+        return itemNames[findEndPointByStartPoint(startPoint)]
+    }
+
+    private fun findEndPointByStartPoint(startPoint: Int): Int {
+        val height = value.size
+        val width = value[0].size
+        var nowPoint = startPoint
+        for (now in 0 until height) {
+            if (nowPoint > 0 && value[now][nowPoint - 1]) {
+                nowPoint--
+            } else if (nowPoint < width - 1 && value[now][nowPoint]) {
+                nowPoint++
+            }
+        }
+        return nowPoint
+    }
+
     private fun generateLadder(width: Int, height: Int): List<List<Boolean>> {
         val ladder = arrayListOf<List<Boolean>>()
-        for (i in 1..height) {
+        for (i in 0 until height) {
             ladder.add(generateRow(width))
         }
         return ladder
@@ -28,8 +48,12 @@ class Ladder(
 
     private fun generateRow(width: Int): List<Boolean> {
         val row = arrayListOf<Boolean>()
-        for (i in 1..width) {
-            row.add(RandomUtil.generateRandom())
+        for (i in 0 until width) {
+            var value = RandomUtil.generateRandom()
+            if (i > 0 && row[i - 1]) {
+                value = false
+            }
+            row.add(value)
         }
         return row
     }
