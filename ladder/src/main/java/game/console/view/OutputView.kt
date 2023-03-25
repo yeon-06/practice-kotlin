@@ -22,24 +22,24 @@ object OutputView {
     }
 
     private fun printListWithFormat(list: List<String>) {
-        for (l in list) {
-            print("%-${TAB_SIZE}s".format(l))
-        }
-        println()
+        println(list.joinToString("") { "%-${TAB_SIZE}s".format(it) })
     }
 
     private fun printBoard(values: List<List<Boolean>>) {
         for (value in values) {
             print("|")
-            for (v in value) {
-                if (v) {
-                    print("-".repeat(TAB_SIZE - 1))
-                } else {
-                    print(" ".repeat(TAB_SIZE - 1))
-                }
-                print("|")
+            value.forEach {
+                print(findSign(it).repeat(TAB_SIZE - 1) + "|")
             }
             println()
         }
     }
+
+    private fun findSign(boolean: Boolean): String =
+            if (boolean) {
+                "-"
+            } else {
+                " "
+            }
+
 }
