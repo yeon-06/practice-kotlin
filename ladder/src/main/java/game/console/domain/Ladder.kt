@@ -1,4 +1,4 @@
-package game.console
+package game.console.domain
 
 import game.console.util.RandomUtil
 
@@ -28,10 +28,10 @@ class Ladder(
         val height = value.size
         val width = value[0].size
         var nowPoint = startPoint
-        for (now in 0 until height) {
-            if (nowPoint > 0 && value[now][nowPoint - 1]) {
+        for (nowHeight in 0 until height) {
+            if (nowPoint > 0 && value[nowHeight][nowPoint - 1]) {
                 nowPoint--
-            } else if (nowPoint < width - 1 && value[now][nowPoint]) {
+            } else if (nowPoint < width && value[nowHeight][nowPoint]) {
                 nowPoint++
             }
         }

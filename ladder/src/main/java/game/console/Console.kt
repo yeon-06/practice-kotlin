@@ -1,5 +1,6 @@
 package game.console
 
+import game.console.domain.Ladder
 import game.console.view.InputView
 import game.console.view.OutputView
 

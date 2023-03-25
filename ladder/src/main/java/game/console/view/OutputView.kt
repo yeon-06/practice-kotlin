@@ -1,6 +1,6 @@
 package game.console.view
 
-import game.console.Ladder
+import game.console.domain.Ladder
 
 object OutputView {
 
