@@ -35,11 +35,5 @@ object OutputView {
         }
     }
 
-    private fun findSign(boolean: Boolean): String =
-            if (boolean) {
-                "-"
-            } else {
-                " "
-            }
-
+    private fun findSign(isLine: Boolean): String = if (isLine) "-" else " "
 }
