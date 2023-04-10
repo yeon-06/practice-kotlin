@@ -19,7 +19,7 @@ class Ladder(
     }
 
     fun findItemByParticipant(participant: String): String {
-        require(participantNames.contains(participant)) { "참가자의 이름을 올바르게 입력해주세요." }
+        require(participant in participantNames) { "참가자의 이름을 올바르게 입력해주세요." }
         val startPoint = participantNames.indexOf(participant)
         return itemNames[findEndPointByStartPoint(startPoint)]
     }
