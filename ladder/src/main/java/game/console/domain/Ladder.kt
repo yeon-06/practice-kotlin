@@ -39,7 +39,7 @@ class Ladder(
     }
 
     private fun generateLadder(width: Int, height: Int): List<List<Boolean>> {
-        val ladder = arrayListOf<List<Boolean>>()
+        val ladder = mutableListOf<List<Boolean>>()
         for (i in 0 until height) {
             ladder.add(generateRow(width))
         }
@@ -47,7 +47,7 @@ class Ladder(
     }
 
     private fun generateRow(width: Int): List<Boolean> {
-        val row = arrayListOf<Boolean>()
+        val row = mutableListOf<Boolean>()
         for (i in 0 until width) {
             var value = RandomUtil.generateRandom()
             if (i > 0 && row[i - 1]) {
