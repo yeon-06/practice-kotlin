@@ -13,7 +13,7 @@ fun main() {
     OutputView.printLadder(ladder)
 
     var input = InputView.inputPartitionName()
-    while (!input.contentEquals("q")) {
+    while (!input.contentEquals("q", ignoreCase = true)) {
         printResult(ladder, input)
         input = InputView.inputPartitionName()
     }
