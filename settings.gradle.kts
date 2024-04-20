@@ -4,6 +4,7 @@ include(
     "ladder",
     "practice",
     "racingcar",
+    "java-vs-kotlin",
 )
 
 pluginManagement {
