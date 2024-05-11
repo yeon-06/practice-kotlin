@@ -9,6 +9,8 @@
 - [내용 정리](#내용-정리)
     - [section1. 코틀린에서 변수와 타입, 연산자를 다루는 방법](#section1-코틀린에서-변수와-타입-연산자를-다루는-방법)
     - [section2. 코틀린에서 코드를 제어하는 방법](#section2-코틀린에서-코드를-제어하는-방법)
+    - [section3. 코틀린에서의 OOP](#section3-코틀린에서의-OOP)
+    - [section4. 코틀린에서의 FP](#section4-코틀린에서의-FP)
 
 # 코틀린 공부 꿀팁
 
@@ -265,3 +267,109 @@ fun main() {
 }
 fun sum(vararg numbers: Int) = numbers.sum()
 ```
+
+## section3. 코틀린에서의 OOP
+
+### 클래스
+
+- 생성자 선언 가능
+- getter, setter 자동 생성 (사용 시 `Person.age` 식으로 `.`을 통해 접근) -> 때문에 해당 필드를 `프로퍼티`라고 부름
+- init (초기화 블록)을 이용해 생성 시 로직 호출 가능 (ex: 값 세팅, 검증 로직)
+- 부생성자는 constructor 키워드를 이용해 선언 가능
+    - 코틀린에서는 부생성자보다는 default parameter 사용을 권장
+
+```kotlin
+class Person(
+    val name: String,
+    var age: Int
+) {
+
+    init { // 초기화 블록
+        println("init block")
+    }
+
+    // 부생성자
+    constructor(name: String) : this(name, 0)
+
+    // 정적 팩토리 메서드
+    companion object {
+        fun create() = Person("James", 33)
+    }
+}
+```
+
+### extends_example
+
+- extends, implements 대신 `:` 사용
+- `@Override` 대신 `override` 사용
+- [상속 예제 코드](./src/main/kotlin/extends_example)
+
+### 접근 제어; visibility modifier
+
+- 자바와 코틀린의 가시성 제어
+    - 코틀린은 패키지를 namespace 를 관리하는 용도로 쓰고, 가시성 제어할 때 사용하지 않는다
+
+| -         | Java                  | Kotlin                             |
+|-----------|-----------------------|------------------------------------|
+| public    | 모든 곳에서 접근 가능          | 모든 곳에서 접근 가능                       |
+| protected | 같은 패키지/하위 클래스에서 접근 가능 | 선언된 클래스/하위 클래스에서 접근 가능             |
+| default   | 같은 패키지에서만 접근 가능       | x                                  |
+| internal  | x                     | 같은 모듈(한 번에 컴파일 되는 코틀린 코드)에서만 접근 가능 |
+| private   | 선언된 클래스에서만 접근 가능      | 선언된 클래스에서만 접근 가능                   |
+
+### companion object
+
+- 코틀린은 `static`이 없다. 대신 `companion object` 키워드를 사용한다.
+- static: 정적으로 인스턴스끼리 값을 공유
+- companion object: 클래스와 동행하는 유일한 오브젝트
+
+```kotlin
+class Person(
+    val name: String = DEFAULT_NAME,
+) {
+    companion object {
+        private const val DEFAULT_NAME = "GUEST"
+    }
+}
+```
+
+### 싱글톤
+
+- `object` 키워드를 이용해 싱글톤 객체 생성 가능
+
+```kotlin
+object Singleton {
+    var num: Int = 0
+}
+```
+
+### 익명 클래스
+
+- `object` 키워드를 이용해 익명 클래스 생성 가능
+
+```kotlin
+val runnable = object : Runnable {
+    override fun run() {
+        println("Runnable")
+    }
+}
+
+// 단, 람다로 표현 가능하다
+val runnable = Runnable { println("Runnable") }
+```
+
+### 다양한 클래스
+
+- data class
+    - equals, hashCode, toString 메서드 자동 생성
+    - jdk 16부터 추가된 record 와 유사
+- enum class
+    - Java와 큰 차이 없음
+    - [when과 함께 사용하는 예제 코드](./src/main/kotlin/sealed_example/Main.kt)
+- sealed class
+    - 상속이 가능한 추상클래스를 외부에서는 상속할 수 없게 만든다.
+    - 하위 클래스를 봉인(sealed)한다.
+    - 런타임 때 클래스 타입이 추가될 수 없음 (컴파일 타임 때 하위 클래스 타입을 모두 기억)
+    - [when과 함께 사용하는 예제 코드](./src/main/kotlin/sealed_example/Main.kt)
+
+## section4. 코틀린에서의 FP
