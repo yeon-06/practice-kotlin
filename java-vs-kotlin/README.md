@@ -373,3 +373,93 @@ val runnable = Runnable { println("Runnable") }
     - [when과 함께 사용하는 예제 코드](./src/main/kotlin/sealed_example/Main.kt)
 
 ## section4. 코틀린에서의 FP
+
+### 배열
+
+- `arrayOf()`로 생성
+- `arr.withIndex()`로 인덱스와 값을 함께 사용 가능
+- `arr.plus()`로 요소 추가 가능
+
+```kotlin
+val arr = arrayOf(1, 2, 3, 4, 5)
+for ((index, value) in arr.withIndex()) {
+    println("index: $index, value: $value")
+}
+```
+
+### 컬렉션
+
+- 가변 컬렉션: `mutableListOf()`, `mutableSetOf()`, `mutableMapOf()`
+- 불변 컬렉션: `listOf()`, `setOf()`, `mapOf()`
+
+```kotlin
+val map = mapOf("a" to 1, "b" to 2)
+println("\"a\"의 값은 ${map["a"]}")
+```
+
+### 확장 함수
+
+- 기존 Java 코드 위에 자연스럽게 Kotlin 코드를 추가하고 싶다는 고민에서 생겨났다.
+- 멤버 함수와 확장 함수의 형식이 동일하다면, 멤버 함수가 우선 순위가 더 높다.
+- [예제 코드](./src/main/kotlin/FunctionExample.kt)
+
+```kotlin
+println("반짝반짝 작은 별".addStar()) // "반짝반짝 작은 별⭐️
+
+fun String.addStar(): String {
+    return this.plus("⭐️")
+}
+```
+
+### infix 함수
+
+- 중위 함수
+
+```kotlin
+println(1 add 2)    // 3
+
+infix fun Int.add(x: Int): Int {
+    return this + x
+}
+```
+
+### inline 함수
+
+- 함수가 호출되는 대신, 함수를 호출한 지점에 함수 본문을 그대로 복붙하고 싶은 경우
+- 함수를 파라미터로 전달할 때의 오버헤드를 줄이기 위해 사용
+- 성능 측정을 진행하며 신중하게 사용 필요
+
+```kotlin
+println(1.add(2))   // 3
+
+inline fun Int.add(x: Int): Int {
+    return this + x
+}
+```
+
+### 지역 함수
+
+- 함수 안에 함수를 선언할 수 있음
+
+### 람다
+
+- Java 에서는 람다를 이용해 함수를 넘겨주는 것처럼 보이게 만들지, 함수를 근본적으로 넘길수는 없음
+- Kotlin 에서는 가능함
+
+```kotlin
+fun main() {
+    // 변수에 함수를 넣을 수 있다.
+    val sum1 = fun(x: Int, y: Int): Int = x + y
+    val sum2 = { x: Int, y: Int -> x + y }
+
+    println(sum1(1, 2))  // 3
+    println(sum2(1, 2))  // 3
+}
+```
+
+### Closure
+
+- Java 람다에서는 외부 변수를 참조할 수 없음
+- Kotlin 람다에서는 외부 변수를 참조할 수 있음
+    - 람다가 시작하는 지점에 참조하는 변수들을 모두 포획해 정보를 갖고 있음 -> 이 데이터 구조가 Closure
+    - 이렇게 해야 람다를 진정한 일급 시민으로 간주 가능할 수 있음
