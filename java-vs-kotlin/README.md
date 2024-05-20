@@ -11,6 +11,7 @@
     - [section2. 코틀린에서 코드를 제어하는 방법](#section2-코틀린에서-코드를-제어하는-방법)
     - [section3. 코틀린에서의 OOP](#section3-코틀린에서의-OOP)
     - [section4. 코틀린에서의 FP](#section4-코틀린에서의-FP)
+    - [section5. 기타 코틀린 문법](#section5-기타-코틀린-문법)
 
 # 코틀린 공부 꿀팁
 
@@ -463,3 +464,67 @@ fun main() {
 - Kotlin 람다에서는 외부 변수를 참조할 수 있음
     - 람다가 시작하는 지점에 참조하는 변수들을 모두 포획해 정보를 갖고 있음 -> 이 데이터 구조가 Closure
     - 이렇게 해야 람다를 진정한 일급 시민으로 간주 가능할 수 있음
+
+## section5. 기타 코틀린 문법
+
+### Type Alias
+
+- type: 타입, alias: 별칭
+- 긴 이름의 클래스를 축약하거나 더 좋은 이름으로 사용하고 싶을 때 사용
+
+### as import
+
+- 다른 패키지의 같은 이름 함수를 동시에 가져오고 싶을 때
+- import와 동시에 이름을 바꾸는 기능
+
+```kotlin
+import java.util.Random as HelloRandom
+```
+
+### 구조 분해와 componentN 함수
+
+- data class를 사용하면 자동으로 componentN 함수가 생성된다
+- data class가 아니어도 직접 componentN 함수를 생성할 수 있다.
+
+```kotlin
+data class Person(val name: String, val age: Int)
+class CustomPerson(val name: String, val age: Int) {
+    operator fun component1() = name
+    operator fun component2() = age
+}
+
+fun main() {
+    val person = Person("James", 33)
+    val (name, age) = person
+    println("name: $name, age: $age")
+}
+```
+
+### Jump와 Label
+
+- 흐름을 제어하는 키워드: return, break, continue
+- 코틀린의 forEach 에서는 continue, break를 사용할 수 없다
+    - `@run`이나 `@forEach`, 라벨을 사용하면 사용할 수는 있음
+
+```kotlin
+val numbers = listOf(1, 2, 3, 4, 5)
+numbers.forEach {
+    if (it == 3) return@forEach
+    println(it)
+}
+```
+
+### takeIf & takeUnless
+
+- `takeIf`: 주어진 조건을 만족하면 해당 값이, 그렇지 않으면 null 반환
+- `takeUnless`: 주어진 조건을 만족하지 않으면 해당 값이, 그렇지 않으면 null 반환
+
+### scope function
+
+- 람다를 사용해 일시적인 영역을 만들고, 이를 이용해 코드를 더 간결하게 만드는 함수
+- `let`: 확장함수. 람다를 받아 람다 결과를 반환한다.
+- `run`: 확장함수. 람다를 받아 람다 결과를 반환한다.
+- `apply`: 확장함수. 람다를 받아 객체 자신을 반환한다.
+- `also`: 확장함수. 람다를 받아 객체 자신을 반환한다.
+- `with`: 확장함수 X.
+- [예제코드](./src/main/kotlin/ScopeFunctionExample.kt)
