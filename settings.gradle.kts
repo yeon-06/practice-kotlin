@@ -5,6 +5,7 @@ include(
     "practice",
     "racingcar",
     "java-vs-kotlin",
+    "coroutine",
 )
 
 pluginManagement {
