@@ -9,4 +9,5 @@
 3. [[Coroutine] 구조화된 동시성, 코루틴 스코프](https://yeonyeon.tistory.com/334)
 4. [[Coroutine] 코루틴 스코프 함수](https://yeonyeon.tistory.com/335)
 5. [[Coroutine] 디스패처](https://yeonyeon.tistory.com/336)
-5. [[Coroutine] 코루틴과 스레드](https://yeonyeon.tistory.com/337)
+6. [[Coroutine] 코루틴과 공유 상태](https://yeonyeon.tistory.com/337)
+7. [서울 우먼잇츠 X 우아한스터디 후기](https://yeonyeon.tistory.com/339)
