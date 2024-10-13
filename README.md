@@ -1,6 +1,6 @@
 # 코틀린 연습용 레포지토리
 
-### 폴더 설명
+### 모듈 설명
 
 - [practice](./practice)
     - 참고 도서: Kotlin IN ACTION
@@ -16,3 +16,7 @@
 - [coroutine](./coroutine)
     - 참고 도서: 코틀린 코루틴
     - 코루틴 연습용 모듈
+
+### 코틀린과 함께 독서하기
+
+- [코틀린으로 배우는 함수형 프로그래밍](./docs/functional-programming)
