@@ -11,3 +11,4 @@
 5. [[Coroutine] 디스패처](https://yeonyeon.tistory.com/336)
 6. [[Coroutine] 코루틴과 공유 상태](https://yeonyeon.tistory.com/337)
 7. [서울 우먼잇츠 X 우아한스터디 후기](https://yeonyeon.tistory.com/339)
+8. [구조적 동시성 이해하기 (feat. goto의 역사)](https://yeonyeon.tistory.com/344)
